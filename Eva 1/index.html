@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Mis Mascotas | Landing Page</title>
+    <style>
+        /* ========== VARIABLES CSS (colores pastel) ========== */
+        :root {
+            --lavanda: #e6e6fa;      /* morado pastel claro */
+            --rosado: #ffe4e1;        /* rosa pastel */
+            --celeste: #e0f2fe;       /* celeste pastel */
+            --menta: #d1fae5;         /* verde menta pastel */
+            --texto-oscuro: #2d2f36;
+            --gris-claro: #f9f9ff;
+            --sombra: 0 4px 12px rgba(0, 0, 0, 0.05);
+            --border-radius: 24px;
+            --max-width: 1200px;
+        }
+
+        /* ========== RESET Y ESTILOS BASE ========== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, var(--lavanda) 0%, var(--celeste) 100%);
+            color: var(--texto-oscuro);
+            line-height: 1.5;
+            padding: 2rem 1.5rem;
+            min-height: 100vh;
+        }
+
+        /* Contenedor principal para limitar ancho y centrar */
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(2px);
+            border-radius: var(--border-radius);
+            box-shadow: var(--sombra);
+            overflow: hidden;
+        }
+
+        /* ========== HEADER SEMÁNTICO ========== */
+        header {
+            background-color: var(--rosado);
+            padding: 2rem 2rem 1.5rem;
+            text-align: center;
+            border-bottom: 3px solid rgba(255, 255, 255, 0.5);
+        }
+
+        header h1 {
+            font-size: 2.8rem;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #b36b9e, #6c91b2);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #4a4e69;
+        }
+
+        /* ========== MAIN CON SECCIONES ========== */
+        main {
+            padding: 2rem;
+        }
+
+        /* Cada tarjeta (article) contiene imagen + texto */
+        .mascota-card {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: center;
+            background: white;
+            border-radius: 28px;
+            margin-bottom: 2.5rem;
+            padding: 1.5rem;
+            box-shadow: var(--sombra);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .mascota-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Contenedor de imagen con proporción cuadrada */
+        .img-container {
+            flex: 1.2;
+            min-width: 200px;
+            border-radius: 24px;
+            overflow: hidden;
+            background: var(--celeste);
+        }
+
+        .img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .mascota-card:hover .img-container img {
+            transform: scale(1.02);
+        }
+
+        /* Texto descriptivo */
+        .descripcion {
+            flex: 1.8;
+            padding: 0.5rem;
+        }
+
+        .descripcion h2 {
+            font-size: 1.9rem;
+            margin-bottom: 0.75rem;
+            color: #6c5b7b;
+            border-left: 5px solid var(--rosado);
+            padding-left: 1rem;
+        }
+
+        .descripcion p {
+            font-size: 1.1rem;
+            color: #2d2f36;
+            margin-bottom: 1rem;
+        }
+
+        .mascota-caracter {
+            display: inline-block;
+            background-color: var(--menta);
+            padding: 0.3rem 0.9rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #2c5a3b;
+        }
+
+        /* Alternancia de colores de fondo en las cards para dar dinamismo */
+        .mascota-card:nth-child(even) {
+            background: var(--gris-claro);
+        }
+
+        /* ========== FOOTER ========== */
+        footer {
+            background-color: var(--lavanda);
+            text-align: center;
+            padding: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.6);
+            font-size: 0.9rem;
+            color: #4a4e69;
+        }
+
+        footer a {
+            color: #8b5e7c;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            header h1 {
+                font-size: 2rem;
+            }
+            .mascota-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 1.2rem;
+            }
+            .descripcion h2 {
+                border-left: none;
+                border-bottom: 2px solid var(--rosado);
+                padding-left: 0;
+                padding-bottom: 0.5rem;
+            }
+            .descripcion p {
+                text-align: justify;
+            }
+            .img-container {
+                width: 100%;
+                max-width: 280px;
+                margin: 0 auto;
+            }
+        }
+
+        /* Mejora de accesibilidad: focus visible */
+        a:focus-visible, button:focus-visible {
+            outline: 3px solid #b36b9e;
+            outline-offset: 2px;
+        }
+
+        /* Contraste WCAG: texto sobre fondos claros es legible */
+        .descripcion p, .descripcion h2 {
+            color: #1e1e2a;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- HEADER: etiqueta semántica -->
+    <header>
+        <h1>🐾 Mis compañeros peludos</h1>
+        <p>Conocé a cada uno de ellos, sus historias y personalidades</p>
+    </header>
+
+    <!-- MAIN: contenido principal -->
+    <main>
+        <!-- Cada mascota es un article semántico -->
+        <article class="mascota-card">
+            <div class="img-container">
+                <!-- Reemplazar 'imagen1.jpg' por la ruta real de tu imagen -->
+                <img src="image/Mona1.jpg" alt="Fotografía de Luna, una perrita mestiza de pelaje marrón">
+            </div>
+            <div class="descripcion">
+                <h2>Mona</h2>
+                <p>Podria ser que tenga TEA perruno?</p>
+                <span class="mascota-caracter">🐕 2 años • Mestiza • Energia Alta</span>
+            </div>
+        </article>
+
+        <article class="mascota-card">
+            <div class="img-container">
+                <img src="https://placekitten.com/401/400" alt="Gato naranja llamado Simón descansando sobre una almohada">
+            </div>
+            <div class="descripcion">
+                <h2>Simón 🧡</h2>
+                <p>Simón es un gato naranja con una personalidad única: ama los mimos pero solo cuando él lo decide. Es un experto cazador de sombras y ronronea como un motorcito.</p>
+                <span class="mascota-caracter">🐈 5 años • Naranja • Independiente</span>
+            </div>
+        </article>
+
+        <article class="mascota-card">
+            <div class="img-container">
+                <img src="https://placekitten.com/402/400" alt="Coneja blanca y gris llamada Nube comiendo zanahoria">
+            </div>
+            <div class="descripcion">
+                <h2>Nube ☁️</h2>
+                <p>Nuestra conejita más dulce. Nube es tímida al principio, pero una vez que confía, da saltos de alegría. Le fascinan las hojas verdes y es muy ordenada con su espacio.</p>
+                <span class="mascota-caracter">🐇 2 años • Mini lop • Tierna</span>
+            </div>
+        </article>
+
+        <article class="mascota-card">
+            <div class="img-container">
+                <img src="https://placekitten.com/402/400" alt="Coneja blanca y gris llamada Nube comiendo zanahoria">
+            </div>
+            <div class="descripcion">
+                <h2>Nube ☁️</h2>
+                <p>Nuestra conejita más dulce. Nube es tímida al principio, pero una vez que confía, da saltos de alegría. Le fascinan las hojas verdes y es muy ordenada con su espacio.</p>
+                <span class="mascota-caracter">🐇 2 años • Mini lop • Tierna</span>
+            </div>
+        </article>
+
+        <article class="mascota-card">
+            <div class="img-container">
+                <img src="https://placekitten.com/401/400" alt="Gato naranja llamado Simón descansando sobre una almohada">
+            </div>
+            <div class="descripcion">
+                <h2>Simón 🧡</h2>
+                <p>Simón es un gato naranja con una personalidad única: ama los mimos pero solo cuando él lo decide. Es un experto cazador de sombras y ronronea como un motorcito.</p>
+                <span class="mascota-caracter">🐈 5 años • Naranja • Independiente</span>
+            </div>
+        </article>
+
+        <article class="mascota-card">
+            <div class="img-container">
+                <img src="https://placekitten.com/401/400" alt="Gato naranja llamado Simón descansando sobre una almohada">
+            </div>
+            <div class="descripcion">
+                <h2>Simón 🧡</h2>
+                <p>Simón es un gato naranja con una personalidad única: ama los mimos pero solo cuando él lo decide. Es un experto cazador de sombras y ronronea como un motorcito.</p>
+                <span class="mascota-caracter">🐈 5 años • Naranja • Independiente</span>
+            </div>
+        </article>
+
+        <article class="mascota-card">
+            <div class="img-container">
+                <img src="https://placekitten.com/401/400" alt="Gato naranja llamado Simón descansando sobre una almohada">
+            </div>
+            <div class="descripcion">
+                <h2>Simón 🧡</h2>
+                <p>Simón es un gato naranja con una personalidad única: ama los mimos pero solo cuando él lo decide. Es un experto cazador de sombras y ronronea como un motorcito.</p>
+                <span class="mascota-caracter">🐈 5 años • Naranja • Independiente</span>
+            </div>
+        </article>
+
+        <article class="mascota-card">
+            <div class="img-container">
+                <img src="https://placekitten.com/401/400" alt="Gato naranja llamado Simón descansando sobre una almohada">
+            </div>
+            <div class="descripcion">
+                <h2>Simón 🧡</h2>
+                <p>Simón es un gato naranja con una personalidad única: ama los mimos pero solo cuando él lo decide. Es un experto cazador de sombras y ronronea como un motorcito.</p>
+                <span class="mascota-caracter">🐈 5 años • Naranja • Independiente</span>
+            </div>
+        </article>
+
+        <article class="mascota-card">
+            <div class="img-container">
+                <img src="https://placekitten.com/401/400" alt="Gato naranja llamado Simón descansando sobre una almohada">
+            </div>
+            <div class="descripcion">
+                <h2>Simón 🧡</h2>
+                <p>Simón es un gato naranja con una personalidad única: ama los mimos pero solo cuando él lo decide. Es un experto cazador de sombras y ronronea como un motorcito.</p>
+                <span class="mascota-caracter">🐈 5 años • Naranja • Independiente</span>
+            </div>
+        </article>
+
+        <article class="mascota-card">
+            <div class="img-container">
+                <img src="https://placekitten.com/401/400" alt="Gato naranja llamado Simón descansando sobre una almohada">
+            </div>
+            <div class="descripcion">
+                <h2>Simón 🧡</h2>
+                <p>Simón es un gato naranja con una personalidad única: ama los mimos pero solo cuando él lo decide. Es un experto cazador de sombras y ronronea como un motorcito.</p>
+                <span class="mascota-caracter">🐈 5 años • Naranja • Independiente</span>
+            </div>
+        </article>
+
+        <!-- Puedes agregar más mascotas copiando el bloque article -->
+    </main>
+
+    <!-- FOOTER semántico -->
+    <footer>
+        <p>© 2026 - Landing page creada para evaluación de Fundamentos HTML5, CSS3 e IA.<br>
+        📸 Fotografías reales de mis mascotas | Diseño con colores pastel y código semántico.</p>
+        <p><a href="#" aria-label="Volver arriba">⬆️ Volver arriba</a></p>
+    </footer>
+</div>
+</body>
+</html>
