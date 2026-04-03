@@ -2,4 +2,4 @@
 
 Prueba de Evaluacion 1 de Programacion Front End
 
-Landing-Page con fotos de mis mascotas
+Landing-Page con fotos de mis mascotas.
